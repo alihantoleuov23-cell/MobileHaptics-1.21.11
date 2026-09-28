@@ -1,0 +1,49 @@
+name: Build Mobile Haptics
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Android NDK
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r27c
+
+      - name: Build native bridge
+        shell: bash
+        run: |
+          set -euo pipefail
+          NDK_ROOT="${ANDROID_NDK_HOME:-${ANDROID_NDK_LATEST_HOME:-}}"
+          if [ -z "$NDK_ROOT" ]; then echo "Android NDK path not found"; exit 1; fi
+          CLANG="$NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin"
+          mkdir -p src/main/resources/native/arm64-v8a src/main/resources/native/x86_64
+          "$CLANG/aarch64-linux-android26-clang++" -shared -fPIC -std=c++17 native/mobilehaptics.cpp -o src/main/resources/native/arm64-v8a/libmobilehaptics_bridge.so
+          "$CLANG/x86_64-linux-android26-clang++" -shared -fPIC -std=c++17 native/mobilehaptics.cpp -o src/main/resources/native/x86_64/libmobilehaptics_bridge.so
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: '8.14'
+
+      - name: Build mod
+        run: gradle build --no-daemon
+
+      - name: Upload mod jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobile-haptics-1.21.11
+          path: build/libs/mobile-haptics-0.1.0.jar
