@@ -1,22 +1,21 @@
 {
   "schemaVersion": 1,
-  "id": "mobilehaptics",
+  "id": "mobilevibration",
   "version": "${version}",
-  "name": "Mobile Haptics",
-  "description": "Android haptic feedback for Minecraft actions through the Zalith Launcher native bridge.",
-  "authors": ["MobileHaptics"],
-  "license": "LGPL-3.0-or-later",
-  "environment": "client",
+  "name": "MobileVibration",
+  "description": "Minimal Android haptic feedback mod for Minecraft Java Edition 1.21.11.",
+  "authors": [
+    "alihantoleuov23"
+  ],
+  "license": "MIT",
+  "environment": "*",
   "entrypoints": {
-    "client": [
-      "ru.mobilehaptics.MobileHapticsClient"
+    "main": [
+      "com.alihantoleuov.mobilevibration.MobileVibrationMod"
     ]
   },
-  "mixins": [
-    "mobilehaptics.mixins.json"
-  ],
   "depends": {
-    "fabricloader": ">=0.18.0",
+    "fabricloader": ">=0.18.1",
     "minecraft": "1.21.11",
     "fabric-api": "*"
   }
