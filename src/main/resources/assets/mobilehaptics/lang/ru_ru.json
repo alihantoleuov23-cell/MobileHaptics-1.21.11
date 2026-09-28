@@ -1,0 +1,10 @@
+{
+  "category.mobilehaptics": "Mobile Haptics",
+  "key.mobilehaptics.open_config": "Открыть настройки вибрации",
+  "screen.mobile-haptics.title": "Mobile Haptics",
+  "screen.mobile-haptics.enabled": "Вибрация: %s",
+  "screen.mobile-haptics.break": "Ломание: %d мс / %d%%",
+  "screen.mobile-haptics.place": "Установка: %d мс / %d%%",
+  "screen.mobile-haptics.done": "Готово",
+  "screen.mobile-haptics.test": "Проверить вибрацию"
+}
