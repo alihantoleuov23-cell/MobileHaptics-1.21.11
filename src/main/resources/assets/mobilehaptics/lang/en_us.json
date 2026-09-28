@@ -1,0 +1,10 @@
+{
+  "category.mobilehaptics": "Mobile Haptics",
+  "key.mobilehaptics.open_config": "Open haptics settings",
+  "screen.mobile-haptics.title": "Mobile Haptics",
+  "screen.mobile-haptics.enabled": "Haptics: %s",
+  "screen.mobile-haptics.break": "Break: %d ms / %d%%",
+  "screen.mobile-haptics.place": "Place: %d ms / %d%%",
+  "screen.mobile-haptics.done": "Done",
+  "screen.mobile-haptics.test": "Test vibration"
+}
